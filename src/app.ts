@@ -36,7 +36,17 @@ const app: FastifyPluginAsync<AppOptions> = async (
         title: "Learn Fastify",
         version: "0.1.0",
       },
-      servers: [],
+      servers: [
+        {
+          url: "http://localhost:3000/api/v1",
+          description: "Development server v1",
+        },
+      ],
+      tags: [
+        { name: "auth", description: "Auth related end-points" },
+        { name: "user", description: "User related end-points" },
+        { name: "admin", description: "Admin related end-points" },
+      ],
     },
     transform: jsonSchemaTransform,
     logLevel: "debug",

@@ -13,13 +13,18 @@ const users: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
     {
       schema: {
         body: createUserBodySchema,
+        tags: ["user"],
       },
     },
     createUserHandler,
   );
   fastify
     .withTypeProvider<ZodTypeProvider>()
-    .get("/:id", { schema: getUserByIdParamsSchema }, getUserByIdHandler);
+    .get(
+      "/:id",
+      { schema: { params: getUserByIdParamsSchema, tags: ["user"] } },
+      getUserByIdHandler,
+    );
 };
 
 export default users;
